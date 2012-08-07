@@ -1,9 +1,14 @@
-<lift:surround with="default" at="content">
-    <lift:Bookmarks.renderPage eager_eval="true">
-        <lift:embed what="/templates-hidden/code"/>
-    </lift:Bookmarks.renderPage>
+<!DOCTYPE html>
+<html>
+<body class="lift:content_id=real_content">
+<div class="lift:surround?with=default;at=content" id="real_content">
+    <div class="bookmarks lift:Bookmarks.renderPage?eager_eval=true">
+        <div class="lift:embed?what=/templates-hidden/code"></div>
+    </div>
 
-    <lift:Bookmarks.paginate eager_eval="true">
-        <lift:embed what="/templates-hidden/paginator"/>
-    </lift:Bookmarks.paginate>
-</lift:surround>
+    <div class="lift:Bookmarks.paginate?eager_eval=true">
+        <div class="lift:embed?what=/templates-hidden/paginator"></div>
+    </div>
+</div>
+</body>
+</html>
