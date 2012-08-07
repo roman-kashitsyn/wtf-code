@@ -18,7 +18,7 @@ object CodeBinder {
       ".language *" #> post.getLanguage &
       ".content *" #> post.content &
       ".description *" #> TextileParser.toHtml(post.description) &
-      ".author *" #> post.author.map(_.nickName.get).openOr("Guest") &
+      ".link_to_author *" #> post.author.map(_.nickName.get).openOr("Guest") &
       ".date *" #> post.createdAt &
       ".commentsNum *" #> post.comments.size &
       ".newCommentsNum *" #> LastSeen.unseenCount(User.currentUser, Full(post)) &

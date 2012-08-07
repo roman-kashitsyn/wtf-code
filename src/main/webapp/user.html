@@ -1,27 +1,32 @@
-<lift:surround with="default" at="content">
-  <lift:ViewUser.profile>
+<!DOCTYPE html>
+<html>
+<body class="lift:content_id=real_content">
+<div class="lift:surround?with=default;at=content" id="real_content">
+  <div class="lift:ViewUser.profile">
     <div class="row">
       <div class="pull-left span2">
-        <img entry:avatar_url="" alt="ava" />
+        <img class="avatar" alt="ava" />
       </div>
       <div class="span10">
         <div class="row">
           <div class="span2">
             <b><lift:loc>user.label</lift:loc></b>
           </div>
-          <div class="span6"><entry:nick /></div>
+          <div class="span6"><span class="nick"></span></div>
         </div>
         <div class="row">
           <div class="span2">
             <b><lift:loc>user.registered</lift:loc></b>
           </div>
-          <div class="span6"><entry:date /></div>
+          <div class="span6"><span class="date"></span></div>
         </div>
         <hr/>
         <div>
-          <entry:aboutMe />
+          <div class="aboutMe"></div>
         </div>
       </div>
     </div>
-  </lift:ViewUser.profile>
-</lift:surround>
+  </div>
+</div>
+</body>
+</html>
