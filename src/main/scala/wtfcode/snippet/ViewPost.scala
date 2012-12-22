@@ -120,6 +120,8 @@ class ViewPost {
       bindCaptcha()
   }
 
+  def makeChat = <lift:comet type="CommentActor" name={"post-" + maybeId.getOrElse(0)}/>
+
   private def bindCaptcha() =
     if (User.currentUser.isDefined) ".reCaptcha" #> NodeSeq.Empty
     else ".reCaptcha *" #> ReCaptcha.captchaXhtml
