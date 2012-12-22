@@ -14,8 +14,11 @@ object CommentJs {
   val NoticesContainer = "comment-notices"
 
   def notify(comment: Comment): JsCmd =
-    SetHtml(NoticesContainer, <b>{comment.author.obj.map(_.nickName).getOrElse("Guest")}</b>
-      ++ <p>{comment.content}</p>) &
+    SetHtml(NoticesContainer,
+      <div onclick={"location.href='#" + comment.anchor + "';"}>
+        <b>{comment.author.obj.map(_.nickName).getOrElse("Guest")}</b>
+        <p>{WtfBbParser.toHtml(comment.content)}</p>
+      </div>) &
     JsShowId(NoticesContainer) &
       FadeOut(NoticesContainer)
 }

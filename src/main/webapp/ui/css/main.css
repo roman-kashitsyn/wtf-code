@@ -55,7 +55,9 @@ span.language-label {
   font-size: 13px;
 }
 #comment-notices {
-  position: absolute;
+  position: fixed;
+  cursor: pointer;
+  opacity: 0.6;
   top: 80px;
   left: 10px;
   width: 200px;

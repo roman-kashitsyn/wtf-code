@@ -18,10 +18,11 @@ class CommentActor extends CometActor with CometListener {
 
   def registerWith = CommentServer
 
-  private lazy val postId: Long = name.map { s =>
-    val i = s.lastIndexOf("-")
-    asLong(s.substring(i + 1)).getOrElse(0L)
-  }.getOrElse(0L)
+  private lazy val postId: Long = (for {
+    s  <- name
+    i  =  s.lastIndexOf("-") if i > 0
+    id <- asLong(s.substring(i + 1))
+  } yield id).getOrElse(0L)
 
   def render: RenderOut = new RenderOut(NodeSeq.Empty)
 
