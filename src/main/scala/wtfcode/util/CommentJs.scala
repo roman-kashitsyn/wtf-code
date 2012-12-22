@@ -4,6 +4,7 @@ import wtfcode.model.Comment
 import net.liftweb.http.js.JsCmd
 import net.liftweb.http.js.JsCmds._
 import net.liftweb.http.js.jquery.JqJsCmds.FadeOut
+import net.liftweb.common.Empty
 
 /**
  * Commands to work with comments on client side.
@@ -13,12 +14,18 @@ import net.liftweb.http.js.jquery.JqJsCmds.FadeOut
 object CommentJs {
   val NoticesContainer = "comment-notices"
 
-  def notify(comment: Comment): JsCmd =
+  def notify(comment: Comment): JsCmd = {
+    val link = "#" + comment.anchor
+
     SetHtml(NoticesContainer,
-      <div onclick={"location.href='#" + comment.anchor + "';"}>
-        <b>{comment.author.obj.map(_.nickName).getOrElse("Guest")}</b>
-        <p>{WtfBbParser.toHtml(comment.content)}</p>
+      <div class="media" onclick={"location.href='" + link + "';"}>
+        <a class="pull-left" href={link}>
+          <img class="media-object avatar" src={Avatar.apply(comment.author, Empty)} alt="avatar"></img>
+        </a>
+        <h4 class="media-heading">{comment.author.obj.map(_.nickName).getOrElse("Guest")}</h4>
+        <div class="media-body">{WtfBbParser.toHtml(comment.content)}</div>
       </div>) &
-    JsShowId(NoticesContainer) &
+      JsShowId(NoticesContainer) &
       FadeOut(NoticesContainer)
+  }
 }
