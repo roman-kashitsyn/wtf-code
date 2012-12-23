@@ -2,8 +2,7 @@ package wtfcode.util
 
 import wtfcode.model.Comment
 import net.liftweb.http.js.JsCmd
-import net.liftweb.http.js.JsCmds._
-import net.liftweb.http.js.jquery.JqJsCmds.FadeOut
+import net.liftweb.http.js.jquery.JqJsCmds.{AppendHtml, FadeOut}
 import net.liftweb.common.Empty
 
 /**
@@ -16,16 +15,16 @@ object CommentJs {
 
   def notify(comment: Comment): JsCmd = {
     val link = "#" + comment.anchor
+    val noticeId = "notice-" + comment.id.is
 
-    SetHtml(NoticesContainer,
-      <div class="media" onclick={"location.href='" + link + "';"}>
+    AppendHtml(NoticesContainer,
+      <div class="media" id={noticeId} onclick={"location.href='" + link + "';"}>
         <a class="pull-left" href={link}>
           <img class="media-object avatar" src={Avatar.apply(comment.author, Empty)} alt="avatar"></img>
         </a>
         <h4 class="media-heading">{comment.author.obj.map(_.nickName).getOrElse("Guest")}</h4>
         <div class="media-body">{WtfBbParser.toHtml(comment.content)}</div>
       </div>) &
-      JsShowId(NoticesContainer) &
-      FadeOut(NoticesContainer)
+      FadeOut(noticeId)
   }
 }

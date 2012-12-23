@@ -61,7 +61,6 @@ span.language-label {
   top: 80px;
   left: 10px;
   width: 200px;
-  height: 200px;
 }
 #add-comment-button {
   margin: 0px 0px 20px;
@@ -69,8 +68,12 @@ span.language-label {
 #add-comment {
   width: 500px;
 }
-ul.comments {
+.comments {
   list-style: none;
+  margin-left: 0px;
+}
+.replies {
+  margin-left: 48px;
 }
 .date {
   font-style: italic;
