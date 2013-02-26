@@ -43,28 +43,28 @@ var Comments;
         }
     };
     $(function() {
-        $("#add-comment-button").live("click", function() {
+        $("#add-comment-button").on("click", function() {
             Comments.clearTextarea();
             $("#add-comment").show();
             Comments.setParent(0);
             Comments.disableAddButton();
             Comments.placeFormTo("#add");
         });
-        $("#add-comment .btn-cancel").live("click", function() {
+        $("#add-comment .btn-cancel").on("click", function() {
             $("#preview").remove();
             Comments.enableAddButton();
             Comments.placeFormTo("#add");
             $("#add-comment").hide();
         });
         
-        $(".foldSubtree").live("click", Comments._mkSlider("slideUp", ".expandSubtree"));
-        $(".expandSubtree").live("click", Comments._mkSlider("slideDown", ".foldSubtree"));
+        $(".foldSubtree").on("click", Comments._mkSlider("slideUp", ".expandSubtree"));
+        $(".expandSubtree").on("click", Comments._mkSlider("slideDown", ".foldSubtree"));
         
-        $(".reply").live("click", function() {
+        $(".reply").on("click", function() {
             Comments.reply($(this).data("comment-id"));
         });
         
-        $(".comment-link").live("click", function() {
+        $(".comment-link").on("click", function() {
            Comments.scrollTo(this); 
         });
         
